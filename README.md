@@ -4,9 +4,15 @@
 
 当你正在使用Mac开发Go程序时，想在linux测试下执行效果，可以用到此工具
 
-## 依赖
+## Dependence
 
 Docker
+
+## Install
+
+```shell script
+GO111MODULE=on go get -u github.com/pefish/run-in-linux/bin/...@v0.0.1
+```
 
 ## Quick start
 

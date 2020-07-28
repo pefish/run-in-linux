@@ -9,4 +9,4 @@ ENV GO_CONFIG /app/config/pom.yaml
 ENV GO_SECRET /app/secret/pom.yaml
 CMD ["./build/bin/linux/main", "--help"]
 
-# docker build -t pefish/main:v1.2.4 .
+# docker build -t pefish/run-in-linux:v1.2.4 .
