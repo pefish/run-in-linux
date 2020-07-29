@@ -11,7 +11,7 @@ Docker
 ## Install
 
 ```shell script
-GO111MODULE=on go get -u github.com/pefish/run-in-linux/bin/...@v0.0.1
+GO111MODULE=on go get -u github.com/pefish/run-in-linux/bin/...@v0.0.2
 ```
 
 ## Quick start

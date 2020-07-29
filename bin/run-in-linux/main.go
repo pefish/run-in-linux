@@ -14,6 +14,7 @@ import (
 func main() {
 	flagSet := flag.NewFlagSet("run-in-linux", flag.ExitOnError)
 	env := flagSet.String("e", "GOPROXY=https://goproxy.io", "环境变量，可以多次指定。例如 GOPROXY=https://goproxy.io,ABC=abc")
+	port := flagSet.String("p", "", "端口映射。例如 3333:80,3334=81")
 	image := flagSet.String("i", "golang:1.14", "镜像名")
 	flagSet.Usage = func() {
 		fmt.Fprintf(flagSet.Output(), "\n%s%s 是一个切换环境执行命令的工具\n\n", strings.ToUpper(string(flagSet.Name()[0])), flagSet.Name()[1:])
@@ -34,6 +35,11 @@ func main() {
 	cmdArr = append(cmdArr, "docker", "run", "-t", "-i", "-v", "`pwd`:/app", "-w", "/app")
 	for _, e := range strings.Split(*env, ",") {
 		cmdArr = append(cmdArr, "-e", e)
+	}
+	if port != nil {
+		for _, p := range strings.Split(*port, ",") {
+			cmdArr = append(cmdArr, "-p", p)
+		}
 	}
 	cmdArr = append(cmdArr, *image, strings.Join(args, " "))
 
