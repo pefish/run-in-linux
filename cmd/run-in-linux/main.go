@@ -38,7 +38,11 @@ func main() {
 	}
 
 	cmdArr := make([]string, 0, 10)
-	cmdArr = append(cmdArr, "docker", "run", "-t", "-i", "-v", "`pwd`:/app", "-w", "/app")
+	cwd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	cmdArr = append(cmdArr, "docker", "run", "-t", "-i", "-v", cwd + ":/app", "-w", "/app")
 	for _, e := range strings.Split(*env, ",") {
 		cmdArr = append(cmdArr, "-e", e)
 	}
