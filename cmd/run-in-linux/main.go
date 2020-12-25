@@ -47,6 +47,14 @@ func main() {
 			cmdArr = append(cmdArr, "-p", p)
 		}
 	}
+	//fmt.Println(args, len(args))
+	for k, arg := range args {
+		if strings.Contains(arg, " ") {
+			arg = strings.ReplaceAll(arg, `$`, `\$`)
+			args[k] = fmt.Sprintf(`"%s"`, arg)
+		}
+	}
+	//fmt.Println(args, len(args))
 	cmdArr = append(cmdArr, *image, strings.Join(args, " "))
 
 	cmd, err := shell.GetCmd(strings.Join(cmdArr, " "))
